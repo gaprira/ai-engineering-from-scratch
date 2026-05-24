@@ -20,14 +20,14 @@ except ImportError:
 CACHE_DIR = Path.home() / ".cache" / "huggingface" / "datasets"
 
 
-def load_and_inspect(dataset_name: str, config: str = None, split: str = "train"):
+def load_and_inspect(dataset_name: str, config: str = None, split: str = "train"):  # type: ignore
     kwargs = {"path": dataset_name}
     if config:
         kwargs["name"] = config
     if split:
         kwargs["split"] = split
 
-    ds = load_dataset(**kwargs)
+    ds = load_dataset(**kwargs)  # type: ignore  # pyright: ignore
     print(f"Dataset: {dataset_name}")
     print(f"  Split: {split}")
     print(f"  Rows: {len(ds)}")
@@ -37,12 +37,12 @@ def load_and_inspect(dataset_name: str, config: str = None, split: str = "train"
     return ds
 
 
-def stream_dataset(dataset_name: str, config: str = None, max_rows: int = 5):
+def stream_dataset(dataset_name: str, config: str = None, max_rows: int = 5):  # type: ignore
     kwargs = {"path": dataset_name, "split": "train", "streaming": True}
     if config:
         kwargs["name"] = config
 
-    ds = load_dataset(**kwargs)
+    ds = load_dataset(**kwargs)  # type: ignore
     rows = []
     for i, example in enumerate(ds):
         rows.append(example)
@@ -159,10 +159,10 @@ if __name__ == "__main__":
     print("=" * 60)
 
     print("\n--- 1. Load and inspect a dataset ---")
-    ds = load_and_inspect("rotten_tomatoes", split="train")
+    ds = load_and_inspect("cornell-movie-review-data/rotten_tomatoes", split="train")
 
     print("\n--- 2. Stream a dataset ---")
-    rows = stream_dataset("rotten_tomatoes", max_rows=3)
+    rows = stream_dataset("cornell-movie-review-data/rotten_tomatoes", max_rows=3)
     for row in rows:
         print(f"  {row['text'][:80]}...")
 
