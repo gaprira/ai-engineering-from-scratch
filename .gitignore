@@ -38,7 +38,7 @@ Thumbs.db
 *.swo
 *~
 .idea/
-.vscode/
+
 *.log
 
 data/
