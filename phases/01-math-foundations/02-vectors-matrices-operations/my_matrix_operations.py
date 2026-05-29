@@ -324,12 +324,12 @@ def run_tests():
             M_inv = M.inverse_2x2()
             product = M.matmul(M_inv)
             print(f"M @ M⁻¹ =\n{product}")
-            print(f"(должно быть близко к identity)")
+            print("(должно быть близко к identity)")
         else:
             print("Матрица сингулярна, обратной не существует")
 
     print("\n" + "=" * 70)
-    print("ТЕСТ 5: Сингулярная матрица (det = 0)")
+    print("TEST 5: Сингулярная матрица (det = 0)")
     print("=" * 70)
 
     singular = Matrix([[1, 2], [2, 4]])
